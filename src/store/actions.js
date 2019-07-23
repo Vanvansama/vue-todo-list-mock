@@ -33,7 +33,13 @@ const action = {
       }).catch(error => console.log(error))
   },
   deleteTodo(context, data) {
-
+    Vue.axios
+      .delete(`http://5d366dcf86300e0014b641f1.mockapi.io/api/v1//todolist/${data.id}`)
+      .then((response)=>{
+        if (response.status === 200) {
+          context.dispatch('getTodos');
+        }
+      }).catch(error => console.log(error))
   }
 }
 
