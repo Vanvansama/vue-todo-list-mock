@@ -19,7 +19,6 @@ export default {
         alert("不能为空");
         return;
       }
-      // this.$store.commit('submitNewItem', {id:Math.random()*100,todo:this.newItem,status:false})
       this.$store.dispatch('addTodo', {todo:this.newItem,status:false})
       this.newItem = "";
     }

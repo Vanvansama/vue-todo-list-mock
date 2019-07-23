@@ -4,6 +4,8 @@ import VueAxios from 'vue-axios'
 
 Vue.use(VueAxios, axios);
 
+
+
 const action = {
   getTodos({ commit }) {
     Vue.axios
@@ -17,9 +19,21 @@ const action = {
       .post("http://5d366dcf86300e0014b641f1.mockapi.io/api/v1/todolist", data)
       .then((response)=>{
         if (response.status === 201) {
-          this.dispatch('getTodos')
+          context.dispatch('getTodos')
         }
       }).catch(error => console.log(error))
+  },
+  updateTodo(context , data) {
+    Vue.axios
+      .put(`http://5d366dcf86300e0014b641f1.mockapi.io/api/v1//todolist/${data.id}`, data)
+      .then((response)=>{
+        if (response.status === 200) {
+          context.dispatch('getTodos');
+        }
+      }).catch(error => console.log(error))
+  },
+  deleteTodo(context, data) {
+
   }
 }
 

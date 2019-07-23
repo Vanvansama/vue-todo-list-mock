@@ -2,8 +2,11 @@
   <div id="listItem">
     <p>
       <input type="checkbox" class="checkbox" @click="handleCheck" v-model="status" />
-      <span :class="check">{{item.todo}}</span>
+      <span :class="check" >{{item.todo}}</span>
     </p>
+    <!-- <p v-else="db">
+      <input @keyup:enter=""/>
+    </p> -->
   </div>
 </template>
 
@@ -15,13 +18,13 @@ export default {
   },
   data() {
     return {
-      status: this.item.status
+      status: this.item.status,
     };
   },
   methods: {
     handleCheck() {
-      this.status = !this.status
-      this.$store.commit('checkTodoItem',{id:this.item.id,status:this.status})
+      this.status = !this.status;
+      this.$store.dispatch('updateTodo',{...this.item,status:this.status})
     }
   },
   computed: {
